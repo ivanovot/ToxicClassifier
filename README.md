@@ -88,4 +88,5 @@ http://127.0.0.1:8000/?text=Всем%20привет!%20Как%20настроен
 - PyTorch
 - FastAPI
 - [Датасет на котором обучалась модель](https://www.kaggle.com/datasets/blackmoon/russian-language-toxic-comments)
+- Модель SBERT [ai-forever/sbert_large_nlu_ru](https://huggingface.co/ai-forever/sbert_large_nlu_ru)
 
