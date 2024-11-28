@@ -1,9 +1,16 @@
 from fastapi import FastAPI, Query
-from model import model  # Импортируйте вашу модель
+from scr.model import Model
+import torch
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+model = Model()
+model.load_state_dict(torch.load('models/model_epoch_50.pt', map_location=device))
+model.eval()
 
 app = FastAPI()
 
-@app.get("/", response_model=int)
+@app.get("/", response_model=float)
 async def predict(text: str = Query(...)):
     """
     Эндпоинт для предсказания. Принимает текстовый параметр в запросе.
@@ -12,7 +19,7 @@ async def predict(text: str = Query(...)):
     :return: предсказание модели
     """
     # Получаем предсказание от модели
-    output = model.predict(text)
+    output = round(float(model.predict(text).item()), 5)
     
     # Возвращаем результат
     return output

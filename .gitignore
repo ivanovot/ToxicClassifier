@@ -1,5 +1,4 @@
 train/
 venv/
-*.pth
-*.pyc
+*__pycache__
 *.gradio
